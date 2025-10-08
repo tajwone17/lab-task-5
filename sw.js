@@ -31,7 +31,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  // Only handle GET requests
+
   if (event.request.method !== "GET") return;
 
   event.respondWith(
@@ -39,7 +39,7 @@ self.addEventListener("fetch", (event) => {
       if (cached) return cached;
       return fetch(event.request)
         .then((response) => {
-          // Cache successful GET responses for offline use
+         
           if (!response || response.status !== 200 || response.type !== "basic")
             return response;
           const responseClone = response.clone();
@@ -49,7 +49,7 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => {
-          // If navigation request fails, show cached shell
+       
           if (event.request.mode === "navigate") {
             return caches.match("./index.html");
           }
