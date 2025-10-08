@@ -66,12 +66,5 @@ resetBtn.addEventListener("click", resetGame);
 
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("./sw.js")
-      .then((reg) =>
-        console.log("Service worker registered. Scope:", reg.scope)
-      )
-      .catch((err) => console.warn("Service worker registration failed:", err));
-  });
+  navigator.serviceWorker.register("sw.js");
 }
